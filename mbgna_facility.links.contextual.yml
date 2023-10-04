@@ -1,0 +1,10 @@
+entity.facility.edit_form:
+  route_name: entity.facility.edit_form
+  group: facility
+  title: Edit
+
+entity.facility.delete_form:
+  route_name: entity.facility.delete_form
+  group: facility
+  title: Delete
+  weight: 10

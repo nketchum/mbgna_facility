@@ -1,0 +1,81 @@
+<?php
+
+/**
+ * @file
+ * Provides a facility entity type.
+ */
+
+use Drupal\Core\Render\Element;
+use Drupal\views\ViewExecutable;
+
+/**
+ * Implements hook_theme().
+ */
+function mbgna_facility_theme() {
+  return [
+    'facility' => [
+      'render element' => 'elements',
+    ],
+  ];
+}
+
+/**
+ * Prepares variables for facility templates.
+ *
+ * Default template: facility.html.twig.
+ *
+ * @param array $variables
+ *   An associative array containing:
+ *   - elements: An associative array containing the facility information and any
+ *     fields attached to the entity.
+ *   - attributes: HTML attributes for the containing element.
+ */
+function template_preprocess_facility(array &$variables) {
+  $facility = $variables['elements']['#facility'];
+  if ($facility) {
+    $variables['url'] = $facility->toUrl('canonical')->toString();
+    $variables['bundle'] = $facility->bundle();
+    $variables['status'] = $facility->status->getString();
+  }
+
+  $variables['view_mode'] = $variables['elements']['#view_mode'];
+  foreach (Element::children($variables['elements']) as $key) {
+    $variables['content'][$key] = $variables['elements'][$key];
+  } 
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK().
+ */
+function mbgna_facility_theme_suggestions_facility(array $variables) {
+  $suggestions = [];
+  $facility = $variables['elements']['#facility'];
+  $sanitized_view_mode = strtr($variables['elements']['#view_mode'], '.', '_');
+  $suggestions[] = 'facility__' . $sanitized_view_mode;
+  $suggestions[] = 'facility__' . $facility->bundle();
+  $suggestions[] = 'facility__' . $facility->bundle() . '__' . $sanitized_view_mode;
+  $suggestions[] = 'facility__' . $facility->id();
+  $suggestions[] = 'facility__' . $facility->id() . '__' . $sanitized_view_mode;
+  return $suggestions;
+}
+
+/**
+ * Implements hook_views_pre_render().
+ */
+function mbgna_facility_views_pre_render(ViewExecutable $view) {
+  // Ensure unique facility entities.
+  if ($view->storage->get('id') === 'facility') {
+    $i = 0;
+    $facilities = [];
+    foreach ($view->result as $result) {
+      $entity = $result->_entity;
+      $id = $entity->get('id')->value;
+      if (in_array($id, $facilities)) {
+        unset($view->result[$i]);
+      } else {
+        $facilities[] = $entity->get('id')->value;
+      }
+      $i++;
+    }
+  }
+}

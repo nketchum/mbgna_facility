@@ -1,0 +1,26 @@
+entity.facility.view:
+  title: 'View'
+  route_name: entity.facility.canonical
+  base_route: entity.facility.canonical
+entity.facility.edit_form:
+  title: 'Edit'
+  route_name: entity.facility.edit_form
+  base_route: entity.facility.canonical
+entity.facility.delete_form:
+  title: 'Delete'
+  route_name: entity.facility.delete_form
+  base_route: entity.facility.canonical
+  weight: 10
+entity.facility.collection:
+  title: 'Facilities'
+  route_name: entity.facility.collection
+  base_route: system.admin_content
+  weight: 10
+entity.facility_type.edit_form:
+  title: 'Edit'
+  route_name: entity.facility_type.edit_form
+  base_route: entity.facility_type.edit_form
+entity.facility_type.collection:
+  title: 'List'
+  route_name: entity.facility_type.collection
+  base_route: entity.facility_type.collection

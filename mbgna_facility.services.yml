@@ -1,0 +1,6 @@
+services:
+  mbgna_facility.redirect_subscriber:
+    class: Drupal\mbgna_facility\EventSubscriber\FacilityRedirectSubscriber
+    arguments: ['@current_route_match', '@entity_type.manager']
+    tags:
+      - { name: 'event_subscriber' }

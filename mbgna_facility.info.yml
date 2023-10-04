@@ -1,0 +1,5 @@
+name: MBGNA Facility
+type: module
+description: Provides a facility entity type for the site.
+package: MBGNA
+core_version_requirement: ^9 || ^10

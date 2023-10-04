@@ -1,0 +1,11 @@
+entity.facility_type.collection:
+  title: 'Facility types'
+  description: 'Manage and CRUD actions on facility types.'
+  parent: system.admin_structure
+  route_name: entity.facility_type.collection
+
+entity.facility.collection:
+  title: 'Facilities'
+  route_name: view.facility.page_1
+  description: 'Browse facility listings'
+  parent: system.admin_content

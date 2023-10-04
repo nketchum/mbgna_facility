@@ -1,0 +1,11 @@
+facility.type_add:
+  title: 'Add facility type'
+  route_name: entity.facility_type.add_form
+  appears_on:
+    - entity.facility_type.collection
+
+facility.add_page:
+  title: 'Add facility'
+  route_name: entity.facility.add_page
+  appears_on:
+    - entity.facility.collection

@@ -1,0 +1,14 @@
+administer facility types:
+  title: 'Administer facility types'
+  description: 'Maintain the types of facilities.'
+  restrict access: true
+access facility overview:
+  title: Access the Facility overview page
+delete facility:
+  title: Delete facility
+create facility:
+  title: Create facility
+view facility:
+  title: View facility
+edit facility:
+  title: Edit facility
